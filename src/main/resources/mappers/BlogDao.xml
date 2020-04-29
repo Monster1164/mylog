@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cb.myblog.dao.BlogDao">
+
+    <resultMap id="Blog" type="com.cb.myblog.pojo.Blog">
+
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="flag" column="flag"/>
+        <result property="views" column="views"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="typeId" column="type_id"/>
+        <result property="firstPicture" column="first_picture"/>
+        <result property="shareStatement" column="share_statement"/>
+        <result property="published" column="published"/>
+        <result property="appreciation" column="appreciation"/>
+        <result property="commenTable" column="commen_table"/>
+<!--        <result property="description" column="description"/>-->
+        <result property="recommend" column="recommend"/>
+        <result property="createTime" column="create_time"/>
+        <result property="typeId" column="type_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="tagIds" column="tag_ids"/>
+        <result property="description" column="description"/>
+
+        <association property="type" javaType="com.cb.myblog.pojo.Type">
+            <id property="id" column="type_id"/>
+            <result property="name" column="name"/>
+        </association>
+    </resultMap>
+
+    <insert id="saveBlog" parameterType="com.cb.myblog.pojo.Blog" keyProperty="id" useGeneratedKeys="true">
+        insert into t_blog(appreciation, commen_table, content,
+        create_time, first_picture, flag, published, recommend,
+        share_statement, title, update_time, views, type_id, user_id, tag_ids,description)
+        values (#{appreciation}, #{commenTable}, #{content},
+        #{createTime}, #{firstPicture}, #{flag}, #{published}, #{recommend},
+        #{shareStatement}, #{title}, #{updateTime}, #{views}, #{type.id}, #{user.id},#{tagIds},#{description})
+    </insert>
+
+    <update id="updateBlog" parameterType="com.cb.myblog.pojo.Blog" >
+        update t_blog set appreciation=#{appreciation}, commen_table=#{commenTable}, content=#{content},
+        first_picture=#{firstPicture}, flag=#{flag}, published=#{published},
+        recommend=#{recommend},share_statement=#{shareStatement}, title=#{title},
+        views=#{views}, type_id=#{type.id}, user_id=#{user.id},
+        tag_ids=#{tagIds},description=#{description}, update_time=DATE_FORMAT(NOW(),'%Y-%m-%d')
+        where id=#{id};
+    </update>
+    <update id="updateViews" parameterType="long">
+        update t_blog set views = views+1 where id = #{id}
+
+    </update>
+    <delete id="deleteBlog" parameterType="long">
+        delete from  t_blog where id =#{id}
+    </delete>
+
+    <select id="getBlog" resultMap="Blog" parameterType="long">
+        select  b.id ,appreciation, commen_table, content,
+        create_time, first_picture, flag, published, recommend,
+        share_statement, title, update_time, views, type_id, user_id,tag_ids,description ,t.id ,name
+        from t_blog as b ,t_type as t
+        where  b.type_id= t.id and b.id = #{id}
+    </select>
+
+
+    <select id="listBlog" resultMap="Blog"  parameterType="com.cb.myblog.vo.BlogQuery" >
+
+        <if test="title != null and title !='' ">
+            <bind name="title" value="'%' + title + '%'" />
+        </if>
+
+        select b.id ,appreciation, commen_table, content,
+        create_time, first_picture, flag, published, recommend,
+        share_statement, title, update_time, views, type_id, user_id,tag_ids,description ,t.id ,name
+        from t_blog as b ,t_type as t
+        <where>
+            <if test="1==1">
+                b.type_id= t.id
+            </if>
+            <if test="recommend !=false">
+                and recommend = #{recommend}
+            </if>
+            <if test="typeId != null">
+                and type_id =#{typeId}
+            </if>
+            <if test="title != null and title !='' ">
+                and title like #{title}
+            </if>
+        </where>
+    </select>
+
+    <select id="listBlogByTagid" resultMap="Blog"  parameterType="long" >
+
+        <if test="title != null and title !='' ">
+            <bind name="tagId" value="'%' + tagId + '%'" />
+        </if>
+
+        select b.id ,appreciation, commen_table, content,
+        create_time, first_picture, flag, published, recommend,
+        share_statement, title, update_time, views, type_id, user_id,tag_ids,description ,t.id ,name
+        from t_blog as b ,t_type as t
+        <where>
+            <if test="1==1">
+                b.type_id= t.id
+            </if>
+            <if test="title != null and title !='' ">
+                and tag_ids like #{tagId}
+            </if>
+        </where>
+    </select>
+
+
+
+    <select id="getAllBlog" resultMap="Blog">
+        select  b.id ,appreciation, commen_table, content,
+        create_time, first_picture, flag, published, recommend,
+        share_statement, title, update_time, views, type_id, user_id,tag_ids,description ,t.id ,name
+        from t_blog as b ,t_type as t
+        where  b.type_id= t.id
+    </select>
+    <select id="listRecommendBlog" resultType="com.cb.myblog.pojo.Blog">
+        select * from t_blog where recommend = true ;
+    </select>
+
+    <select id="listBlogByText" resultMap="Blog" parameterType="string" >
+        <if test="query!=null and query!=''">
+            <bind name="query" value="'%' + query + '%'"/>
+        </if>
+
+        select * from t_blog where title like #{query}  or content like  #{query}
+    </select>
+
+    <select id="listYears" resultType="java.lang.String">
+        select date_format(update_time,"%Y") as year from t_blog
+            group by year order by  year desc ;
+    </select>
+    <select id="listBlogByYear" resultType="com.cb.myblog.pojo.Blog">
+        select * from t_blog where date_format(update_time,"%Y") = #{year}
+    </select>
+    <select id="ConutBlog" resultType="java.lang.Integer">
+        select count(*) from t_blog;
+    </select>
+</mapper>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cb.myblog.dao.UserDao">
+
+
+    <select id="findByUsernameAndPassword" resultType="com.cb.myblog.pojo.User">
+        select * from  t_user where username = #{username} AND password = #{password};
+    </select>
+    <select id="getzUser" resultType="com.cb.myblog.pojo.User">
+        select * from t_user where id = 1
+    </select>
+</mapper>

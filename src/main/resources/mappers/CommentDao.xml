@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cb.myblog.dao.CommentDao">
+
+
+    <resultMap id="commntMap" type="com.cb.myblog.pojo.Comment" >
+
+        <id property="id" column="cid"/>
+        <result property="blogId" column="blog_id"/>
+        <result property="avatar" column="avatar"/>
+        <result property="createTime" column="ccreate_time"/>
+        <result property="email" column="email"/>
+        <result property="nickname" column="nickname"/>
+        <result property="content" column="ccontent"/>
+        <result property="parentCommentId" column="parent_comment_id"/>
+
+        <result property="adminComment" column="admin_comment"/>
+
+        <association property="parentComment" javaType="com.cb.myblog.pojo.Comment"
+                     select="selectCommnetById" column="id=c.parent_comment_id"/>
+
+        <association property="blog" javaType="com.cb.myblog.pojo.Blog">
+            <id property="id" column="id"/>
+            <result property="title" column="title"/>
+            <result property="content" column="content"/>
+            <result property="flag" column="flag"/>
+            <result property="views" column="views"/>
+            <result property="updateTime" column="update_time"/>
+            <result property="typeId" column="type_id"/>
+            <result property="firstPicture" column="first_picture"/>
+            <result property="shareStatement" column="share_statement"/>
+            <result property="published" column="published"/>
+            <result property="appreciation" column="appreciation"/>
+            <result property="commenTable" column="commen_table"/>
+            <result property="recommend" column="recommend"/>
+            <result property="createTime" column="create_time"/>
+            <result property="typeId" column="type_id"/>
+            <result property="userId" column="user_id"/>
+            <result property="tagIds" column="tag_ids"/>
+            <result property="description" column="description"/>
+        </association>
+
+        <collection property="replyComments"  ofType="com.cb.myblog.pojo.Comment"
+                    select="selectCommentByPId" column="Pid=cid">
+        </collection>
+    </resultMap>
+
+    <resultMap id="parentComment" type="com.cb.myblog.pojo.Comment" >
+
+        <id property="id" column="id"/>
+        <result property="blogId" column="blog_id"/>
+        <result property="avatar" column="avatar"/>
+        <result property="email" column="email"/>
+        <result property="nickname" column="nickname"/>
+        <result property="parentCommentId" column="parent_comment_id"/>
+        <result property="adminComment" column="admin_comment"/>
+        <result property="createTime" column="create_time"/>
+        <association property="parentComment" javaType="com.cb.myblog.pojo.Comment"
+                     select="selectCommnetById" column="id=parent_comment_id"/>
+
+        <collection property="replyComments"  ofType="com.cb.myblog.pojo.Comment"
+                    select="selectCommentByPId" column="Pid=id">
+        </collection>
+    </resultMap>
+
+
+    <insert id="saveComment" parameterType="com.cb.myblog.pojo.Comment" useGeneratedKeys="true" keyProperty="id">
+        insert into t_comment(admin_comment,avatar, create_time, email, nickname, blog_id, parent_comment_id,content)
+        values (#{adminComment},#{avatar},DATE_FORMAT(NOW(),'%Y-%m-%d'),#{email},#{nickname},#{blogId},#{parentCommentId},
+                #{content})
+    </insert>
+
+
+    <select id="listCommentByBlogId" resultMap="commntMap" parameterType="long">
+        select
+        c.blog_id,c.content as ccontent ,c.id as cid , c.avatar , c.create_time as ccreate_time , c.email ,c.nickname,c.parent_comment_id,c.admin_comment,
+        b.id ,b.appreciation,b.commen_table,b.content,b.create_time,
+        b.first_picture,b.flag,b.published,b.recommend,b.share_statement,
+        b.title,b.update_time,b.views,b.type_id,b.user_id,b.tag_ids,b.description
+        from t_comment as c ,t_blog as b
+        where b.id =c.blog_id and c.blog_id=#{blogId} and
+        c.parent_comment_id is null order by  c.create_time ;
+    </select>
+
+<!--    <select id="listCommentByBlogId" resultMap="commntMap" parameterType="long">-->
+<!--        select c.id-->
+<!--        from t_comment as c ,t_blog as b-->
+<!--        where b.id =c.blog_id and c.blog_id=#{blogId} and-->
+
+<!--               c.parent_comment_id is null order by  c.create_time ;-->
+
+<!--    </select>-->
+
+<!--    父结点-->
+    <select id="selectCommnetById" resultType="com.cb.myblog.pojo.Comment">
+        select id ,admin_comment,avatar,content,
+         create_time,email,nickname,blog_id, parent_comment_id
+         from t_comment
+        where id =#{id}
+    </select>
+
+<!--    子结点-->
+    <select id="selectCommentByPId" resultMap="parentComment">
+        select id ,admin_comment,avatar,content,
+         create_time,email,nickname,blog_id, parent_comment_id
+         from t_comment
+        where parent_comment_id =#{Pid}
+    </select>
+
+</mapper>

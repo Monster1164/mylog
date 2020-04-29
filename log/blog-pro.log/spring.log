@@ -1,0 +1,38 @@
+2020-04-29 11:27:13.305  INFO 667 --- [restartedMain] com.cb.myblog.MylogApplication           : Starting MylogApplication on appledeMacBook-Pro.local with PID 667 (/Users/apple/Desktop/Study/mylog/target/classes started by apple in /Users/apple/Desktop/Study/mylog)
+2020-04-29 11:27:13.346  INFO 667 --- [restartedMain] com.cb.myblog.MylogApplication           : The following profiles are active: pro
+2020-04-29 11:27:20.188  WARN 667 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-04-29 11:27:21.403  INFO 667 --- [restartedMain] com.cb.myblog.MylogApplication           : Started MylogApplication in 9.479 seconds (JVM running for 11.321)
+2020-04-29 11:28:47.668  INFO 693 --- [restartedMain] com.cb.myblog.MylogApplication           : Starting MylogApplication on appledeMacBook-Pro.local with PID 693 (/Users/apple/Desktop/Study/mylog/target/classes started by apple in /Users/apple/Desktop/Study/mylog)
+2020-04-29 11:28:47.672  INFO 693 --- [restartedMain] com.cb.myblog.MylogApplication           : The following profiles are active: pro
+2020-04-29 11:28:51.234  WARN 693 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-04-29 11:28:52.038  INFO 693 --- [restartedMain] com.cb.myblog.MylogApplication           : Started MylogApplication in 5.252 seconds (JVM running for 6.94)
+2020-04-29 11:29:15.978  INFO 693 --- [http-nio-80-exec-1] com.cb.myblog.aspect.LogAspect           : request : {url='http://localhost/', ip='0:0:0:0:0:0:0:1', classMethod='class com.cb.myblog.controller.IndexController.index', args=[{}, 1]}
+2020-04-29 11:29:16.167  INFO 693 --- [http-nio-80-exec-1] com.cb.myblog.aspect.LogAspect           : Result : index
+2020-04-29 11:29:18.544  INFO 693 --- [http-nio-80-exec-3] com.cb.myblog.aspect.LogAspect           : request : {url='http://localhost/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='class com.cb.myblog.controller.IndexController.newblogs', args=[{}]}
+2020-04-29 11:29:18.566  INFO 693 --- [http-nio-80-exec-3] com.cb.myblog.aspect.LogAspect           : Result : _fragments :: newblogList
+2020-04-29 11:30:05.081  INFO 693 --- [http-nio-80-exec-7] com.cb.myblog.aspect.LogAspect           : request : {url='http://localhost/', ip='0:0:0:0:0:0:0:1', classMethod='class com.cb.myblog.controller.IndexController.index', args=[{}, 1]}
+2020-04-29 11:30:05.117  INFO 693 --- [http-nio-80-exec-7] com.cb.myblog.aspect.LogAspect           : Result : index
+2020-04-29 11:30:05.490  INFO 693 --- [http-nio-80-exec-10] com.cb.myblog.aspect.LogAspect           : request : {url='http://localhost/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='class com.cb.myblog.controller.IndexController.newblogs', args=[{}]}
+2020-04-29 11:30:05.514  INFO 693 --- [http-nio-80-exec-10] com.cb.myblog.aspect.LogAspect           : Result : _fragments :: newblogList
+2020-04-29 11:30:11.936  INFO 693 --- [http-nio-80-exec-4] com.cb.myblog.aspect.LogAspect           : request : {url='http://localhost/', ip='0:0:0:0:0:0:0:1', classMethod='class com.cb.myblog.controller.IndexController.index', args=[{}, 1]}
+2020-04-29 11:30:11.981  INFO 693 --- [http-nio-80-exec-4] com.cb.myblog.aspect.LogAspect           : Result : index
+2020-04-29 11:30:12.353  INFO 693 --- [http-nio-80-exec-9] com.cb.myblog.aspect.LogAspect           : request : {url='http://localhost/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='class com.cb.myblog.controller.IndexController.newblogs', args=[{}]}
+2020-04-29 11:30:12.371  INFO 693 --- [http-nio-80-exec-9] com.cb.myblog.aspect.LogAspect           : Result : _fragments :: newblogList
+2020-04-29 11:30:21.447  INFO 803 --- [restartedMain] com.cb.myblog.MylogApplication           : Starting MylogApplication on appledeMacBook-Pro.local with PID 803 (/Users/apple/Desktop/Study/mylog/target/classes started by apple in /Users/apple/Desktop/Study/mylog)
+2020-04-29 11:30:21.455  INFO 803 --- [restartedMain] com.cb.myblog.MylogApplication           : The following profiles are active: pro
+2020-04-29 11:30:24.778  WARN 803 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-04-29 11:30:25.542  INFO 803 --- [restartedMain] com.cb.myblog.MylogApplication           : Started MylogApplication in 4.891 seconds (JVM running for 6.057)
+2020-04-29 11:30:34.985  INFO 803 --- [http-nio-80-exec-6] com.cb.myblog.aspect.LogAspect           : request : {url='http://localhost/', ip='0:0:0:0:0:0:0:1', classMethod='class com.cb.myblog.controller.IndexController.index', args=[{}, 1]}
+2020-04-29 11:30:35.134  INFO 803 --- [http-nio-80-exec-6] com.cb.myblog.aspect.LogAspect           : Result : index
+2020-04-29 11:30:36.007  INFO 803 --- [http-nio-80-exec-8] com.cb.myblog.aspect.LogAspect           : request : {url='http://localhost/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='class com.cb.myblog.controller.IndexController.newblogs', args=[{}]}
+2020-04-29 11:30:36.029  INFO 803 --- [http-nio-80-exec-8] com.cb.myblog.aspect.LogAspect           : Result : _fragments :: newblogList
+2020-04-29 11:30:49.091  INFO 803 --- [http-nio-80-exec-9] com.cb.myblog.aspect.LogAspect           : request : {url='http://localhost/blog/5', ip='0:0:0:0:0:0:0:1', classMethod='class com.cb.myblog.controller.IndexController.blog', args=[5, {}]}
+2020-04-29 11:30:49.181  INFO 803 --- [http-nio-80-exec-9] com.cb.myblog.aspect.LogAspect           : Result : blog
+2020-04-29 11:30:49.675  INFO 803 --- [http-nio-80-exec-2] com.cb.myblog.aspect.LogAspect           : request : {url='http://localhost/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='class com.cb.myblog.controller.IndexController.newblogs', args=[{}]}
+2020-04-29 11:30:49.706  INFO 803 --- [http-nio-80-exec-2] com.cb.myblog.aspect.LogAspect           : Result : _fragments :: newblogList
+2020-04-29 11:30:49.803  INFO 803 --- [http-nio-80-exec-1] com.cb.myblog.aspect.LogAspect           : request : {url='http://localhost/comments/5', ip='0:0:0:0:0:0:0:1', classMethod='class com.cb.myblog.controller.CommentController.commnets', args=[5, {}]}
+2020-04-29 11:30:49.870  INFO 803 --- [http-nio-80-exec-1] com.cb.myblog.aspect.LogAspect           : Result : blog :: commentList
+2020-04-29 11:32:05.503  INFO 859 --- [main] com.cb.myblog.MylogApplicationTests      : Starting MylogApplicationTests on appledeMacBook-Pro.local with PID 859 (started by apple in /Users/apple/Desktop/Study/mylog)
+2020-04-29 11:32:05.505  INFO 859 --- [main] com.cb.myblog.MylogApplicationTests      : The following profiles are active: pro
+2020-04-29 11:32:12.852  WARN 859 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-04-29 11:32:15.835  INFO 859 --- [main] com.cb.myblog.MylogApplicationTests      : Started MylogApplicationTests in 10.74 seconds (JVM running for 12.046)
