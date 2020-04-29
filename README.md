@@ -4,4 +4,4 @@
 ###技术组合
 + 后端： Spring Boot + Mybatis + thymeleafÐÍ
 + 数据库： MySQL
-+ 前端UI：Semantic UIāá
++ 前端UI：Semantic UI框架
